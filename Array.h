@@ -40,7 +40,7 @@ public:
 			return arr[index];
 		else
 		{
-			std::cerr << "Index is out of array!" << std::endl;
+			//std::cerr << "Index is out of array!" << std::endl;
 			return NULL;
 		}
 	}
@@ -222,6 +222,47 @@ public:
 		}
 		else
 			return false;
+	}
+
+	T &front() {
+		return arr[0];
+	}
+
+	T &back() {
+		return arr[_size-1];
+	}
+
+	bool insert(int index, const T value) {
+		if (index < 0)
+			return false;
+		switch (mode)
+		{
+		case Mode::Mutable:
+			if (_size == max_size)
+			{
+				T *tmp = new T[max_size += 1];
+				for (size_t i = 0; i < _size; i++)
+					tmp[i] = arr[i];
+				delete[] arr;
+				arr = tmp;
+			}
+			T *tmp = new T[max_size];
+			_size++;
+			for (size_t i(0), j(0); j < _size; i++, j++)
+			{
+				if (i == index)
+				{
+					tmp[i] = value;
+					j--;
+				}
+				else
+					tmp[i] = arr[j];
+			}
+			delete[] arr;
+			arr = tmp;
+			return true;
+			break;
+		}
 	}
 
 private:

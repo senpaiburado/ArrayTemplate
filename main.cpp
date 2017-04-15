@@ -1,11 +1,11 @@
-// Exaples
+// Examples
 
 #include "Array.h"
 #include <conio.h>
 
 int main()
 {
-	Array<int> arr(Array<int>::Mode::Immutable, 17);
+	Array<int> arr;
 
 
 	for (int i(0); i < 15; i++)
@@ -16,9 +16,7 @@ int main()
 
 	std::cout << "\n-----------------------------------------------------\n" << std::endl;
 
-	arr.push_front(50);
-	arr.push_front(30);
-	arr.push_front(40);
+	arr.insert(0, 100);
 
 	for (int i(0); i < arr.size(); i++)
 		std::cout << arr[i] << std::endl;
@@ -26,6 +24,7 @@ int main()
 	std::cout << "Length: " << arr.length() << std::endl;
 	std::cout << "Size: " << arr.size() << std::endl;
 	std::cout << "Empty? - " << (arr.isEmpty() ? "Yes!" : "No!") << std::endl;
+	std::cout << "First - " << arr.front() << " || Last - " << arr.back() << std::endl;
 
 	//arr.resize(15);
 
